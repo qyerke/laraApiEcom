@@ -45,10 +45,15 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $product = Product::findOrFail($request['id']);
+        if($product){
+            return response()->json($product);
+        } else {
+            return response()->json(null);
+        }
+        
     }
 
     /**
